@@ -1,0 +1,16 @@
+#Logs
+logs 
+*.logs
+
+#node module
+frontend/node_modules
+backend/node_modules
+
+#Environment variables
+frontend/.env
+backend/.env
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
