@@ -73,6 +73,8 @@ const CheckOut = () => {
 
     if (res.payload && res.payload._id) {
       const newCheckoutId = res.payload._id;
+      console.log(newCheckoutId);
+      
       setCheckoutId(newCheckoutId);
 
       const { data } = await axios.post(
@@ -141,9 +143,11 @@ const CheckOut = () => {
       console.error("No checkoutId found. Cannot proceed with payment.");
       return;
     }
+    console.log("hndle payment success", id);
+    
     try {
       await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${id}/pay`,
         {
           paymentStatus: "paid",
           paymentDetails: details,
