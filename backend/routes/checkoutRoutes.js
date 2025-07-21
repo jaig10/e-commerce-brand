@@ -4,7 +4,8 @@ const Cart = require("../models/Cart");
 const Product = require("../models/Product");
 const Order = require("../models/Order");
 const { protect } = require("../middleware/authMiddleware");
-
+const razorpay = require("../utils/razorpay");
+const crypto = require("crypto");
 
 const router = express.Router();
 
@@ -42,27 +43,63 @@ router.post("/", protect, async (req, res) => {
 //@desc Update checkout to mark as pais after successful payment
 //@desc Private
 
+// router.put("/:id/pay", protect, async (req, res) => {
+//   const { paymentStatus, paymentDetails } = req.body;
+
+//   try {
+//     const checkout = await Checkout.findById(req.params.id);
+
+//     if (!checkout) {
+//       return res.status(404).json({ message: "Checkout not found." });
+//     }
+
+//     if (paymentStatus === "paid") {
+//       checkout.isPaid = true;
+//       checkout.paymentStatus = paymentStatus;
+//       checkout.paymentDetails = paymentDetails;
+//       checkout.paidAt = Date.now();
+//       await checkout.save();
+
+//       res.status(200).json(checkout);
+//     } else {
+//       res.status(400).json({ message: "Invalid Payment Status" });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// });
 router.put("/:id/pay", protect, async (req, res) => {
-  const { paymentStatus, paymentDetails } = req.body;
+  const { paymentStatus, paymentDetails, razorpay_signature } = req.body;
 
   try {
+    if (!req.params.id) {
+      return res.status(400).json({ message: "Checkout ID is missing" });
+    }
     const checkout = await Checkout.findById(req.params.id);
+    if (!checkout)
+      return res.status(404).json({ message: "Checkout not found" });
 
-    if (!checkout) {
-      return res.status(404).json({ message: "Checkout not found." });
+    const generatedSignature = crypto
+      .createHmac("sha256", process.env.RAZORPAY_SECRET_KEY)
+      .update(
+        paymentDetails.razorpay_order_id +
+          "|" +
+          paymentDetails.razorpay_payment_id
+      )
+      .digest("hex");
+
+    if (generatedSignature !== razorpay_signature) {
+      return res.status(400).json({ message: "Invalid Razorpay signature" });
     }
 
-    if (paymentStatus === "paid") {
-      checkout.isPaid = true;
-      checkout.paymentStatus = paymentStatus;
-      checkout.paymentDetails = paymentDetails;
-      checkout.paidAt = Date.now();
-      await checkout.save();
+    checkout.isPaid = true;
+    checkout.paymentStatus = paymentStatus;
+    checkout.paymentDetails = paymentDetails;
+    checkout.paidAt = Date.now();
 
-      res.status(200).json(checkout);
-    } else {
-      res.status(400).json({ message: "Invalid Payment Status" });
-    }
+    await checkout.save();
+    res.status(200).json(checkout);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
@@ -109,6 +146,27 @@ router.post("/:id/finalize", protect, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
+  }
+});
+
+router.post("/:id/create-razorpay-order", protect, async (req, res) => {
+  try {
+    const checkout = await Checkout.findById(req.params.id);
+    if (!checkout)
+      return res.status(404).json({ message: "Checkout not found" });
+
+    const options = {
+      amount: checkout.totalPrice * 100,
+      currency: "INR",
+      receipt: `rcpt_${checkout._id}`,
+      payment_capture: 1,
+    };
+
+    const order = await razorpay.orders.create(options);
+    res.json(order);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to create Razorpay order" });
   }
 });
 

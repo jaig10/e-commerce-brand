@@ -21,6 +21,7 @@ const ProductManagement = () => {
   if(error) return <p>Error: {error}</p>
   
   return (
+    
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Product Management</h2>
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
