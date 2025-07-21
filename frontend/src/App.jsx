@@ -14,6 +14,7 @@ import OrderDetailsPage from "./pages/OrderDetailsPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminHomePage from "./pages/AdminHomePage";
+import AdminProductPage from "./pages/AdminProductPage";
 import UserManagement from "./components/Admin/UserManagement";
 import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
@@ -22,6 +23,8 @@ import OrderManagement from "./components/Admin/OrderManagement";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRoute from "./components/Common/ProtectedRoute";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
@@ -57,12 +60,26 @@ const App = () => {
           >
             <Route index element={<AdminHomePage />} />
             <Route path="users" element={<UserManagement />} />
-            <Route path="products" element={<ProductManagement />} />
+            <Route path="products" element={<ProductManagement ></ProductManagement >} >
+              <Route path="" element={<AdminProductPage />} />
+            </Route>
+            <Route path="add-product" element={<AdminProductPage />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
             <Route path="orders" element={<OrderManagement />} />
           </Route>
         </Routes>
       </BrowserRouter>
+       <ToastContainer
+        position="top-right" // You can customize position
+        autoClose={5000}    // Auto-close after 5 seconds
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Provider>
   );
 };
