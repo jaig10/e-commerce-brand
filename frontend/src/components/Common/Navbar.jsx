@@ -41,25 +41,25 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-6">
           <Link
             to="/collections/all?gender=Men"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
             Men
           </Link>
           <Link
             to="/collections/all?gender=Women"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
             Women
           </Link>
           <Link
             to="/collections/all?category=Top Wear"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
             Top Wear
           </Link>
           <Link
             to="/collections/all?category=Bottom Wear"
-            className="text-gray-700 hover:text-black text-sm font-medium uppercase"
+            className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
             Bottom Wear
           </Link>
@@ -75,14 +75,14 @@ const Navbar = () => {
             </Link>
           )}
 
-          <Link to="/profile" className="hover:text-black">
-            <HiOutlineUser className="h-6 w-6 text-gray-700" />
+          <Link to="/profile" className="hover:text-gray-700">
+            <HiOutlineUser className="h-6 w-6 text-white-700" />
           </Link>
           <button
             onClick={toggleCardDrawer}
-            className="relative hover:text-black"
+            className="relative hover:text-gray-700"
           >
-            <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
+            <HiOutlineShoppingBag className="h-6 w-6 text-white-700" />
             {cartItemCount > 0 && (
               <span className="absolute -top-1 bg-amber-600 text-white text-xs rounded-full px-2 py-0.5">
                 {cartItemCount}
@@ -93,8 +93,8 @@ const Navbar = () => {
           <div className="overflow-hidden">
             <SearchBar />
           </div>
-          <button onClick={toggleNavDrawer} className="md:hidden">
-            <HiBars3BottomRight className="h-6 w-6 text-gray-700" />
+          <button onClick={toggleNavDrawer} className="md:hidden ">
+            <HiBars3BottomRight className="h-6 w-6 text-white-700" />
           </button>
         </div>
       </nav>
@@ -109,7 +109,7 @@ const Navbar = () => {
       >
         <div className="flex justify-end p-4">
           <button onClick={toggleNavDrawer}>
-            <IoMdClose className="h-6 w-6 text-gray-600" />
+            <IoMdClose className="h-6 w-6 text-white-600" />
           </button>
         </div>
         <div className="p-4">
@@ -118,28 +118,28 @@ const Navbar = () => {
             <Link
               to="/collections/all?gender=Men"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className="block text-white-600 hover:text-gray-700"
             >
               Men
             </Link>
             <Link
               to="/collections/all?gender=Women"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className="block text-white-600 hover:text-gray-700"
             >
               Women
             </Link>
             <Link
               to="/collections/all?category=Top Wear"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className="block text-white-600 hover:text-gray-700"
             >
               Top Wear
             </Link>
             <Link
               to="/collections/all?category=Bottom Wear"
               onClick={toggleNavDrawer}
-              className="block text-gray-600 hover:text-black"
+              className="block text-white-600 hover:text-gray-700"
             >
               Bottom Wear
             </Link>

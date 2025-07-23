@@ -8,6 +8,7 @@ import FeaturedCollection from "../components/Products/FeaturedCollection.jsx";
 import FeaturesSection from "../components/Products/FeaturesSection.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slice/productsSlice.js";
+import bannerImg from "../../src/assets/Banner.webp"; // adjust path as needed
 import axios from "axios";
 
 const Home = () => {
@@ -41,11 +42,19 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <GenderCollectionSection />
+      {/* <GenderCollectionSection /> */}
       <NewArrivals />
 
+      <div className="my-8 px-4">
+  <img
+    src={bannerImg}
+    alt="Promotional Banner"
+    className="w-full h-auto rounded-xl shadow-md"
+  />
+</div>
+
       {/* best sellers */}
-      <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
+      <h2 className="text-3xl text-center mb-1 mt-10">Best Seller</h2>
       {bestSellerProduct?._id ? (
         <ProductDetails productId={bestSellerProduct._id} />
       ) : (

@@ -160,7 +160,7 @@ const ProductDetails = ({ productId }) => {
 
             {/* Product Info */}
             <div className="md:w-1/2 md:ml-10">
-              <h1 className="text-2xl md:text-3xl font-semibold mb-2">
+              <h1 className="text-2xl md:text-3xl  mb-2">
                 {selectedProduct.name}
               </h1>
 
@@ -252,7 +252,7 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleAddToCart}
                 disabled={isButtonDisabled || selectedProduct.countInStock === 0}
-                className={`bg-black text-white hover:text-gray-200 scale-110 py-2 px-6 rounded w-full mb-4 ${
+                className={`bg-black text-white hover:text-gray-200 scale-110 py-2 px-6 hover:cursor-pointer rounded w-full mb-4 ${
                   isButtonDisabled || selectedProduct.countInStock === 0
                     ? "cursor-not-allowed opacity-50"
                     : "hover:bg-gray-900"
@@ -264,7 +264,7 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleBuyNow}
                 disabled={selectedProduct.countInStock === 0}
-                className="bg-green-600 text-white hover:bg-green-700 scale-110 py-2 px-6 rounded w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-white text-black scale-110 py-2 px-6 hover:cursor-pointer border border-black rounded hover:text-gray-700 w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 BUY NOW
               </button>
