@@ -27,7 +27,7 @@ const SearchBar = () => {
   return (
     <div
       className={`flex items-center justify-center w-full transition-all duration-300 ${
-        isOpen ? "absolute top-0 left-0 w-full bg-white h-24 z-50" : "w-auto"
+        isOpen ? "absolute top-0 left-0 w-full bg-[#efefef] h-24 z-50" : "w-auto"
       }`}
     >
       {isOpen ? (
@@ -41,7 +41,7 @@ const SearchBar = () => {
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-white-100 px-4 py-2 pl-2 pr-12 rounded-lg focus:outline-none w-full placeholder:text-white-700"
+              className="bg-[#efefef] px-4 py-2 pl-2 pr-12 rounded-lg focus:outline-none w-full placeholder:text-white-700"
             />
             {/* search icon */}
             <button

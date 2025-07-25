@@ -1,20 +1,21 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const ProductGrid = ({ products, loading, error }) => {
   if (loading) return <p className="text-center py-10">Loading products...</p>;
-  if (error) return <p className="text-center text-red-500 py-10">Error loading products.</p>;
+  if (error)
+    return (
+      <p className="text-center text-red-500 py-10">Error loading products.</p>
+    );
 
   return (
-    <div className="px-4 md:px-4 lg:px-4 pb-10">
+    <div className=" px-1 md:px-4 lg:px-4 pb-10">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
         {products.map((product, index) => (
-          <div
-            key={index}
-            className="bg-white "
-          >
+          <Link key={index} to={`/product/${product._id}`} className="bg-[#efefef] ">
             <div
               className="overflow-hidden w-full"
-              style={{ height: 'auto', maxHeight: '480px' }}
+              style={{ height: "auto", maxHeight: "480px" }}
             >
               <img
                 src={product.images[0].url}
@@ -23,10 +24,10 @@ const ProductGrid = ({ products, loading, error }) => {
               />
             </div>
             <div className="p-2 text-left">
-              <p className="text-sm md:text-base ">{product.name}</p>
-              <p className="text-sm text-gray-600">Rs. {product.price}</p>
+              <p className="text-xs ">{product.name.toUpperCase()}</p>
+              <p className="text-xs text-gray-600">Rs. {product.price}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -34,7 +35,6 @@ const ProductGrid = ({ products, loading, error }) => {
 };
 
 export default ProductGrid;
-
 
 // import React from 'react';
 // import { Link } from 'react-router-dom';

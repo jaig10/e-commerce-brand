@@ -3,21 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/slice/cartSlice";
 
-
 const OrderConfirmationPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {checkout} = useSelector((state) => state.checkout);
+  const { checkout } = useSelector((state) => state.checkout);
 
   //CLear the cart when the order is confirm
   useEffect(() => {
-    if(checkout && checkout._id){
+    if (checkout && checkout._id) {
       dispatch(clearCart());
       localStorage.removeItem("cart");
-    }else{
-      navigate("/my-orders")
+    } else {
+      navigate("/my-orders");
     }
-  }, [checkout, dispatch, navigate])
+  }, [checkout, dispatch, navigate]);
 
   const calculateEstimatedDelivery = (createdAt) => {
     const orderDate = new Date(createdAt);
@@ -26,7 +25,7 @@ const OrderConfirmationPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="max-w-4xl mx-auto p-6 bg-[#efefef]">
       <h1 className="text-4xl font-bold text-center text-emerald-700 mb-8">
         Thank You for Your Order
       </h1>

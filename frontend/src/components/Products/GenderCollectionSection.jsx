@@ -14,7 +14,7 @@ const GenderCollectionSection = () => {
             alt="womens collection"
             className="w-full h-[700px] object-cover"
           />
-          <div className="absolute bottom-8 left-8 bg-white/90 p-4">
+          <div className="absolute bottom-8 left-8 bg-[#efefef]/90 p-4">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
               Women's Collection
             </h2>
@@ -33,7 +33,7 @@ const GenderCollectionSection = () => {
             alt="mens collection"
             className="w-full h-[700px] object-cover"
           />
-          <div className="absolute bottom-8 left-8 bg-white/90 p-4">
+          <div className="absolute bottom-8 left-8 bg-[#efefef]/90 p-4">
             <h2 className="text-2xl font-bold text-gray-900 mb-3">
               Men's Collection
             </h2>

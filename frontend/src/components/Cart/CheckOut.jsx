@@ -193,8 +193,8 @@ const CheckOut = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter">
       {/* left section */}
-      <div className="bg-white rounded-lg p-6">
-        <h2 className="text-2xl uppercase mb-6">Checkout</h2>
+      <div className="bg-[#efefef] rounded-lg p-6">
+        <h2 className="text-2xl uppercase mb-6 font-medium ">Checkout</h2>
         <form onSubmit={handleCreateCheckout}>
           <h3 className="text-lg mb-4">Contact Details</h3>
           <div className="mb-4">

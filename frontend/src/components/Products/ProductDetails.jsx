@@ -111,9 +111,9 @@ const ProductDetails = ({ productId }) => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="p-6">
+    <div className="md:p-6">
       {selectedProduct && (
-        <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
+        <div className="max-w-6xl mx-auto bg-[#efefef] p-6 md:p-8 rounded-lg">
           <div className="flex flex-col md:flex-row">
             {/* Thumbnails */}
             <div className="hidden md:flex flex-col space-y-4 mr-6">
@@ -173,9 +173,9 @@ const ProductDetails = ({ productId }) => {
                 ${selectedProduct.price}
               </p>
 
-              
-
-              <p className="text-gray-600 mb-4">{selectedProduct.description}</p>
+              <p className="text-gray-600 mb-4">
+                {selectedProduct.description}
+              </p>
 
               {/* Color */}
               <div className="mb-4">
@@ -217,11 +217,12 @@ const ProductDetails = ({ productId }) => {
                 </div>
               </div>
               {/* Few items left message */}
-              {selectedProduct.countInStock <= 5 && selectedProduct.countInStock > 0 && (
-                <p className="text-sm text-red-600 mb-2 font-medium">
-                  Few items left!
-                </p>
-              )}
+              {selectedProduct.countInStock <= 5 &&
+                selectedProduct.countInStock > 0 && (
+                  <p className="text-sm text-red-600 mb-2 font-medium">
+                    Few items left!
+                  </p>
+                )}
               {selectedProduct.countInStock == 0 && (
                 <p className="text-sm text-red-600 mb-2 font-medium">
                   Out of stock
@@ -251,7 +252,9 @@ const ProductDetails = ({ productId }) => {
               {/* Buttons */}
               <button
                 onClick={handleAddToCart}
-                disabled={isButtonDisabled || selectedProduct.countInStock === 0}
+                disabled={
+                  isButtonDisabled || selectedProduct.countInStock === 0
+                }
                 className={`bg-black text-white hover:text-gray-200 scale-110 py-2 px-6 hover:cursor-pointer rounded w-full mb-4 ${
                   isButtonDisabled || selectedProduct.countInStock === 0
                     ? "cursor-not-allowed opacity-50"
@@ -264,7 +267,7 @@ const ProductDetails = ({ productId }) => {
               <button
                 onClick={handleBuyNow}
                 disabled={selectedProduct.countInStock === 0}
-                className="bg-white text-black scale-110 py-2 px-6 hover:cursor-pointer border border-black rounded hover:text-gray-700 w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#efefef] text-black scale-110 py-2 px-6 hover:cursor-pointer border border-black rounded hover:text-gray-700 w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 BUY NOW
               </button>

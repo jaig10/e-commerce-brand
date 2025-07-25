@@ -14,9 +14,9 @@ mongoose.connect(process.env.MONGO_URI);
 const seedData = async () => {
   try {
     // clear existing data
-    await Product.deleteMany();
-    await User.deleteMany();
-    await Cart.deleteMany();
+    // await Product.deleteMany();
+    // await User.deleteMany();
+    // await Cart.deleteMany();
 
     // Create a default admin user
     const createdUser = await User.create({

@@ -6,7 +6,7 @@ import {RiTwitterXLine} from 'react-icons/ri'
 
 const Topbar = () => {
   return (
-    <div className='bg-black text-gray-200'>
+    <div className='bg-black text-gray-200 rubik'>
       <div className='container mx-auto flex justify-between items-center py-3'>
         <div className='hidden md:flex items-center space-x-4 ml-5'>
             <a href="#" className='hover:text-gray-300'>
@@ -20,7 +20,7 @@ const Topbar = () => {
             </a>
         </div>
         <div className='text-sm text-center flex-grow'>
-            <span>We ship worldwide - Fast and Reliable shipping!</span>
+            <span>WE SHIP WORLDWIDE - FAST AND RELIABLE SHIPPING!</span>
         </div>
         <div className='text-sm hidden md:block mr-5'>
             <a href="tel:+1234567890" className='hover:text-gray-300'>

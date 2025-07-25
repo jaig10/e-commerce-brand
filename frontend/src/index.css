@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 body {
-  background-color: white; 
+  background-color: #efefef; 
   color: black;             
 }
 
 #root {
-  font-family: "Inter", sans-serif;
+   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -18,4 +18,46 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+
+.rubik{
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 100; */
+  font-style: normal;
+}
+.scroll-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: black;
+  white-space: nowrap;
+}
+
+.scroll-track {
+  display: flex;
+  width: fit-content;
+  animation: scrollText 25s linear infinite;
+}
+
+.scroll-content {
+  display: flex;
+}
+
+.scroll-content span {
+  color: white;
+  font-size: 0.75rem;
+  margin: 0 2rem;
+  padding: 0.5rem  0;
+  white-space: nowrap;
+  letter-spacing: 0.1rem
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

@@ -45,7 +45,10 @@ const AdminProductPage = () => {
       toast.success("Image uploaded!");
     } catch (error) {
       toast.error("Upload failed");
-      console.error("Image upload error:", error.response?.data || error.message);
+      console.error(
+        "Image upload error:",
+        error.response?.data || error.message
+      );
     }
     setUploading(false);
   };
@@ -69,7 +72,9 @@ const AdminProductPage = () => {
       !image || // Ensure an image URL exists
       rating === null // rating is required
     ) {
-      toast.error("Please fill in all required product fields, including an image.");
+      toast.error(
+        "Please fill in all required product fields, including an image."
+      );
       return;
     }
 
@@ -123,25 +128,41 @@ const AdminProductPage = () => {
       setGender("");
     } catch (error) {
       toast.error("Failed to add product");
-      console.error("Error adding product:", error.response?.data || error.message);
-      if (error.response && error.response.data && error.response.data.message) {
+      console.error(
+        "Error adding product:",
+        error.response?.data || error.message
+      );
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         toast.error(`Error: ${error.response.data.message}`);
-      } else if (error.response && error.response.data && error.response.data.errors) {
-          // If backend sends specific validation errors
-          Object.values(error.response.data.errors).forEach(err => {
-              toast.error(err.message);
-          });
+      } else if (
+        error.response &&
+        error.response.data &&
+        error.response.data.errors
+      ) {
+        // If backend sends specific validation errors
+        Object.values(error.response.data.errors).forEach((err) => {
+          toast.error(err.message);
+        });
       }
     }
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md bg-white">
+    <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md bg-[#efefef]">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Add New Product</h2>
       <form onSubmit={handleSubmit}>
         {/* Product Name */}
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Product Name <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="name"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Product Name <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="name"
@@ -154,7 +175,12 @@ const AdminProductPage = () => {
 
         {/* Brand (Optional) */}
         <div className="mb-4">
-          <label htmlFor="brand" className="block text-gray-700 font-semibold mb-2">Brand</label>
+          <label
+            htmlFor="brand"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Brand
+          </label>
           <input
             type="text"
             id="brand"
@@ -167,7 +193,12 @@ const AdminProductPage = () => {
 
         {/* Price */}
         <div className="mb-4">
-          <label htmlFor="price" className="block text-gray-700 font-semibold mb-2">Product Price <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="price"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Product Price <span className="text-red-500">*</span>
+          </label>
           <input
             type="number"
             id="price"
@@ -180,7 +211,12 @@ const AdminProductPage = () => {
 
         {/* Category */}
         <div className="mb-4">
-          <label htmlFor="category" className="block text-gray-700 font-semibold mb-2">Category <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="category"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Category <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="category"
@@ -193,7 +229,12 @@ const AdminProductPage = () => {
 
         {/* Count In Stock */}
         <div className="mb-4">
-          <label htmlFor="countInStock" className="block text-gray-700 font-semibold mb-2">Count In Stock <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="countInStock"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Count In Stock <span className="text-red-500">*</span>
+          </label>
           <input
             type="number"
             id="countInStock"
@@ -206,7 +247,12 @@ const AdminProductPage = () => {
 
         {/* Description */}
         <div className="mb-4">
-          <label htmlFor="description" className="block text-gray-700 font-semibold mb-2">Description <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="description"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Description <span className="text-red-500">*</span>
+          </label>
           <textarea
             id="description"
             value={description}
@@ -219,7 +265,12 @@ const AdminProductPage = () => {
 
         {/* SKU */}
         <div className="mb-4">
-          <label htmlFor="sku" className="block text-gray-700 font-semibold mb-2">SKU (Unique Identifier) <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="sku"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            SKU (Unique Identifier) <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="sku"
@@ -232,7 +283,13 @@ const AdminProductPage = () => {
 
         {/* Sizes */}
         <div className="mb-4">
-          <label htmlFor="sizes" className="block text-gray-700 font-semibold mb-2">Sizes (comma-separated, e.g., S, M, L) <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="sizes"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Sizes (comma-separated, e.g., S, M, L){" "}
+            <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="sizes"
@@ -246,7 +303,13 @@ const AdminProductPage = () => {
 
         {/* Colors */}
         <div className="mb-4">
-          <label htmlFor="colors" className="block text-gray-700 font-semibold mb-2">Colors (comma-separated, e.g., Red, Blue) <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="colors"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Colors (comma-separated, e.g., Red, Blue){" "}
+            <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="colors"
@@ -260,7 +323,12 @@ const AdminProductPage = () => {
 
         {/* Collections */}
         <div className="mb-4">
-          <label htmlFor="collections" className="block text-gray-700 font-semibold mb-2">Collections <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="collections"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Collections <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             id="collections"
@@ -273,7 +341,12 @@ const AdminProductPage = () => {
 
         {/* Rating */}
         <div className="mb-4">
-          <label htmlFor="rating" className="block text-gray-700 font-semibold mb-2">Rating (0-5) <span className="text-red-500">*</span></label>
+          <label
+            htmlFor="rating"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Rating (0-5) <span className="text-red-500">*</span>
+          </label>
           <input
             type="number"
             id="rating"
@@ -289,7 +362,12 @@ const AdminProductPage = () => {
 
         {/* Gender (Enum) */}
         <div className="mb-6">
-          <label htmlFor="gender" className="block text-gray-700 font-semibold mb-2">Gender</label>
+          <label
+            htmlFor="gender"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Gender
+          </label>
           <select
             id="gender"
             value={gender}
@@ -305,23 +383,39 @@ const AdminProductPage = () => {
 
         {/* Image Upload */}
         <div className="mb-6">
-          <label className="block text-gray-700 font-semibold mb-2">Product Image <span className="text-red-500">*</span></label>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Product Image <span className="text-red-500">*</span>
+          </label>
           <input
             type="file"
             onChange={handleImageUpload}
             className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
           />
-          {uploading && <p className="mt-2 text-blue-600">Uploading image...</p>}
+          {uploading && (
+            <p className="mt-2 text-blue-600">Uploading image...</p>
+          )}
           {image && (
             <div className="mt-4 flex items-center gap-2">
               <p className="text-gray-700">Image uploaded:</p>
-              <a href={image} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-sm">
+              <a
+                href={image}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline text-sm"
+              >
                 {image.substring(0, 40)}...
               </a>
-              <img src={image} alt="Uploaded Product" className="w-16 h-16 object-cover rounded-md ml-2" />
+              <img
+                src={image}
+                alt="Uploaded Product"
+                className="w-16 h-16 object-cover rounded-md ml-2"
+              />
             </div>
           )}
-          {!image && <p className="mt-2 text-red-500">Please upload an image.</p>} {/* Visual cue for required image */}
+          {!image && (
+            <p className="mt-2 text-red-500">Please upload an image.</p>
+          )}{" "}
+          {/* Visual cue for required image */}
         </div>
 
         {/* Submit Button */}

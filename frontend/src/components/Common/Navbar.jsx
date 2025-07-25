@@ -30,39 +30,39 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="container bg-white mx-auto flex items-center justify-between py-4 px-6">
+      <nav className="container bg-[#efefef] rubik mx-auto flex items-center justify-between py-4 px-6">
         {/* left - logo */}
         <div>
           <Link to="/" className="text-2xl font-medium">
-            Kixor
+            KIXOR
           </Link>
         </div>
         {/* center - navigation links */}
         <div className="hidden md:flex space-x-6">
           <Link
-            to="/collections/all?gender=Men"
+            to="/collections/all"
             className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
-            Men
+            POLOS
           </Link>
           <Link
-            to="/collections/all?gender=Women"
+            to="/collections/all"
             className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
-            Women
+            SHIRTS
           </Link>
           <Link
             to="/collections/all?category=Top Wear"
-            className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
+            className="text-white-700 hover:text-gray-700 text-sm font-medium  uppercase"
           >
-            Top Wear
+            TSHIRTS
           </Link>
-          <Link
+          {/* <Link
             to="/collections/all?category=Bottom Wear"
             className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
             Bottom Wear
-          </Link>
+          </Link> */}
         </div>
         {/* right - icons */}
         <div className="flex items-center space-x-4">
@@ -102,7 +102,7 @@ const Navbar = () => {
 
       {/* Mobile navigation */}
       <div
-        className={`fixed top-0 left-0 w-3/4 sm:w-1/2 h-full bg-white shadow-lg transform
+        className={`fixed top-0 left-0 w-3/4 sm:w-1/2 h-full bg-[#efefef] shadow-lg transform
         transition-transform duration-300 z-50 md:hidden sm:hidden ${
           navDrawerOpen ? "translate-x-0" : "translate-x-100"
         }`}

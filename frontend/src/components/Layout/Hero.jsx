@@ -27,7 +27,7 @@ const Hero = () => {
           </p>
           <Link
             to="/collections/all"
-            className="bg-white text-gray-950 hover:bg-gray-950 hover:text-white duration-300 transition-all px-6 py-2 rounded-sm text-lg"
+            className="bg-[#efefef] text-gray-950 hover:bg-gray-950 hover:text-white duration-300 transition-all px-6 py-2 rounded-sm text-lg"
           >
             Shop Now
           </Link>

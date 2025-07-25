@@ -41,7 +41,7 @@ const Register = () => {
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-12">
         <form
           onSubmit={handleSumbmit}
-          className="w-full max-w-md bg-white p-8 rounded-lg border shadow-sm"
+          className="w-full max-w-md bg-[#efefef] p-8 rounded-lg border shadow-sm"
         >
           <div className="flex justify-center mb-6">
             <h2 className="text-xl font-medium">Kixor</h2>
@@ -88,7 +88,10 @@ const Register = () => {
           </button>
           <p className="mt-6 text-center text-sm">
             Have an account?{" "}
-            <Link to={`/login?redirect=${encodeURIComponent(redirect)}`} className="text-blue-500">
+            <Link
+              to={`/login?redirect=${encodeURIComponent(redirect)}`}
+              className="text-blue-500"
+            >
               Login
             </Link>
           </p>

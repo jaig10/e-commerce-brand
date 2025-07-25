@@ -87,7 +87,7 @@ const NewArrivals = () => {
             disabled={!canScrollLeft}
             className={`p-2 rounded-full border border-gray-200 ${
               canScrollLeft
-                ? "bg-white text-black"
+                ? "bg-[#efefef] text-black"
                 : "bg-gray-200 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -97,7 +97,7 @@ const NewArrivals = () => {
             onClick={() => scroll("right")}
             className={`p-2 rounded-full border border-gray-200 ${
               canScrollRight
-                ? "bg-white text-black"
+                ? "bg-[#efefef] text-black"
                 : "bg-gray-200 text-gray-500 cursor-not-allowed"
             }`}
           >

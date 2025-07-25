@@ -10,11 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slice/productsSlice.js";
 import bannerImg from "../../src/assets/Banner.webp"; // adjust path as needed
 import axios from "axios";
+import ScrollingBanner from "../components/Common/ScrollingBanner";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((state) => state.products);
-  const demoProducts = [...products.slice(0, 4)]
+  const demoProducts = [...products.slice(0, 4)];
   const [bestSellerProduct, setBestSellerProduct] = useState(null);
 
   useEffect(() => {
@@ -45,10 +47,21 @@ const Home = () => {
       <Hero />
       {/* <GenderCollectionSection /> */}
       {/* <NewArrivals /> */}
-      <div className="bg-white">
-        <div className="mx-auto pt-20 ">
-          <h2 className="mx-4 mb-6">Top Wears for Women</h2>
-          <ProductGrid products={demoProducts} loading={loading} error={error} />
+      <div className="">
+        <div className="mx-auto pt-10 md:pt-6 ">
+          <h2 className="mx-4 mb-4 md:mb-6 rubik text-sm ">NEW ARRIVAL</h2>
+          <ProductGrid
+            products={demoProducts}
+            loading={loading}
+            error={error}
+          />
+          <div className="flex justify-center mb-10 text-[10px]">
+            <Link to={`/collections/all`}>
+              <button className="px-5 py-2 test-xs text-black  border-1 hover:bg-black hover:text-white hover:font-medium transition">
+                DISCOVER MORE
+              </button>
+            </Link>
+          </div>
         </div>
 
         <div className="my-8 px-4">
@@ -60,23 +73,29 @@ const Home = () => {
         </div>
 
         {/* best sellers */}
-        {/* <h2 className="text-3xl text-center mb-1 mt-10">Best Seller</h2>
+
+        <div className="mx-auto">
+          <h2 className="text-sm mx-4 mb-4">MORE FORM KIXOR</h2>
+          <ProductGrid products={products} loading={loading} error={error} />
+          <div className="flex justify-center mb-10 text-[10px]">
+            <Link to={`/collections/all`}>
+              <button className="px-5 py-2 test-xs text-black  border-1 hover:bg-black hover:text-white hover:font-medium transition">
+                DISCOVER MORE
+              </button>
+            </Link>
+          </div>
+        </div>
+        {/* <FeaturedCollection /> */}
+        <FeaturesSection />
+        {/* <h2 className="text-medium px-4 mb-1 mt-10">MOST LOVED</h2>
         {bestSellerProduct?._id ? (
           <ProductDetails productId={bestSellerProduct._id} />
         ) : (
           <p className="text-center">Loading best seller products ...</p>
         )} */}
-
-        <div className="mx-auto">
-          <h2 className="text-3xl text-center font-bold mb-4">
-            Top Wears for Women
-          </h2>
-          <ProductGrid products={products} loading={loading} error={error} />
-        </div>
-        <FeaturedCollection />
-        <FeaturesSection />
+        <ScrollingBanner />
       </div>
-     </div>
+    </div>
   );
 };
 
