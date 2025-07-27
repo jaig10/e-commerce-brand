@@ -15,6 +15,10 @@ import MyOrdersPage from "./pages/MyOrdersPage";
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminHomePage from "./pages/AdminHomePage";
 import AdminProductPage from "./pages/AdminProductPage";
+import AdminBannerPage from "./pages/AdminBannerPage";
+import AdminBannerListPage from "./pages/AdminBannerListPage";
+
+
 import UserManagement from "./components/Admin/UserManagement";
 import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
@@ -61,11 +65,12 @@ const App = () => {
             <Route index element={<AdminHomePage />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="products" element={<ProductManagement ></ProductManagement >} >
-              <Route path="" element={<AdminProductPage />} />
             </Route>
             <Route path="add-product" element={<AdminProductPage />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
             <Route path="orders" element={<OrderManagement />} />
+            <Route path="banners" element={<AdminBannerListPage />} />
+            <Route path="add-banner" element={<AdminBannerPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

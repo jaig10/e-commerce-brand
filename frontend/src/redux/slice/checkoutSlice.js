@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../axios"
 
 //Async thunk to create a checkout session
 export const createCheckout = createAsyncThunk(
@@ -17,8 +18,10 @@ export const createCheckout = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log(error);
-      
+      console.log("error:",error);
+      if (error.response && error.response.data && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      }
       return rejectWithValue(error.response.data);
     }
   }
@@ -41,10 +44,12 @@ const checkoutSlice = createSlice({
     .addCase(createCheckout.fulfilled, (state,action) => {
       state.loading = false;
       state.checkout = action.payload;
+      state.error = null;
     })
     .addCase(createCheckout.rejected, (state,action) => {
       state.loading = false;
       state.error = action.payload.message;
+      state.error = null;
     })
   },
 });

@@ -18,6 +18,8 @@ const Home = () => {
   const { products, loading, error } = useSelector((state) => state.products);
   const demoProducts = [...products.slice(0, 4)];
   const [bestSellerProduct, setBestSellerProduct] = useState(null);
+    const [promoBanner, setPromoBanner] = useState(null);
+  const [bannerLoading, setBannerLoading] = useState(true);
 
   useEffect(() => {
     //fetch the product of specific collection
@@ -40,6 +42,20 @@ const Home = () => {
       }
     };
     fetchBestSeller();
+
+    const fetchPromotionalBanner = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/admin/banners`
+        );
+        setPromoBanner(data);
+        setBannerLoading(false);
+      } catch (error) {
+        console.error("Error fetching promotional banner:", error.response?.data || error.message);
+        setBannerLoading(false);
+      }
+    };
+    fetchPromotionalBanner();
   }, [dispatch]);
 
   return (

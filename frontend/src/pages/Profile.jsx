@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/slice/authSlice";
 import { clearCart } from "../redux/slice/cartSlice";
 
+
 const Profile = () => {
   const {user} = useSelector((state) => state.auth);
   const navigate = useNavigate();
