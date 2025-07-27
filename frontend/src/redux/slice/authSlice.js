@@ -23,7 +23,7 @@ const initialState = {
 //ASyncthunk for user login
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async (userData, { rejectWithVlaue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
@@ -34,7 +34,7 @@ export const loginUser = createAsyncThunk(
 
       return response.data.user;
     } catch (error) {
-      return rejectWithVlaue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -42,7 +42,7 @@ export const loginUser = createAsyncThunk(
 //ASyncthunk for user register
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async (userData, { rejectWithVlaue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/register`,
@@ -53,7 +53,7 @@ export const registerUser = createAsyncThunk(
 
       return response.data.user;
     } catch (error) {
-      return rejectWithVlaue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );

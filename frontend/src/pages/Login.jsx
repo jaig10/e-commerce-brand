@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../assets/login.webp";
 import { loginUser } from "../redux/slice/authSlice";
+import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { mergeCart } from "../redux/slice/cartSlice";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,15 +13,24 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, guestId, loading } = useSelector((state) => state.auth);
+  const { user, guestId, error, loading } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
 
-  //Get redirect parameter and check if it's checkout ro soemthing
+    //Get redirect parameter and check if it's checkout ro soemthing
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
   const isCheckoutRedirect = redirect.includes("checkout");
 
-  useEffect(() => {
+   const handleSumbmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ email, password }));
+  };
+
+   useEffect(() => {
     if (user) {
+      toast.success(`Welcome back`, {
+        position: "top-right",
+      });
+
       if (cart?.products.length > 0 && guestId) {
         dispatch(mergeCart({ guestId, user })).then(() => {
           navigate(isCheckoutRedirect ? "/checkout" : "/");
@@ -30,10 +41,12 @@ const Login = () => {
     }
   }, [user, guestId, cart, navigate, isCheckoutRedirect, dispatch]);
 
-  const handleSumbmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser({ email, password }));
-  };
+  // Show error toast on login failure
+   useEffect(() => {
+    if (error) {
+      toast.error(error, { position: "top-right" });
+    }
+  }, [error]);
 
   return (
     <div className="flex">
@@ -71,9 +84,10 @@ const Login = () => {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition"
           >
-            {loading ? "Loading..." : "Sign In"}
+            {loading ? "Logging in..." : "Login"}
           </button>
           <p className="mt-6 text-center text-sm">
             Don't Have an account?{" "}
@@ -90,11 +104,12 @@ const Login = () => {
         <div className="h-full flex flex-col justify-center items-center">
           <img
             src={login}
-            alt="Login ro Account"
+            alt="Login to Account"
             className="h-[750px] w-full object-cover"
           />
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
