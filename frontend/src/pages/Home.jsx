@@ -64,11 +64,11 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="my-8 px-4">
+        <div className="my-8">
           <img
             src={bannerImg}
             alt="Promotional Banner"
-            className="w-full h-auto rounded-xl shadow-md"
+            className="w-full h-auto shadow-md"
           />
         </div>
 
