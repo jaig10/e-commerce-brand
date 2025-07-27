@@ -104,7 +104,7 @@ const Navbar = () => {
       <div
         className={`fixed top-0 left-0 w-3/4 sm:w-1/2 h-full bg-[#efefef] shadow-lg transform
         transition-transform duration-300 z-50 md:hidden sm:hidden ${
-          navDrawerOpen ? "translate-x-0" : "translate-x-100"
+          navDrawerOpen ? "translate-x-0" : "translate-x-200"
         }`}
       >
         <div className="flex justify-end p-4">
@@ -113,36 +113,36 @@ const Navbar = () => {
           </button>
         </div>
         <div className="p-4">
-          <h2 className="text-xl font-semibold mb-4">menu</h2>
+          <h2 className="text-xl font-semibold mb-4">Menu</h2>
           <nav className="space-y-4">
             <Link
-              to="/collections/all?gender=Men"
+              to="/collections/all"
               onClick={toggleNavDrawer}
               className="block text-white-600 hover:text-gray-700"
             >
-              Men
+              POLOS
             </Link>
             <Link
-              to="/collections/all?gender=Women"
+              to="/collections/all"
               onClick={toggleNavDrawer}
               className="block text-white-600 hover:text-gray-700"
             >
-              Women
+              SHIRTS
             </Link>
             <Link
-              to="/collections/all?category=Top Wear"
+              to="/collections/all"
               onClick={toggleNavDrawer}
               className="block text-white-600 hover:text-gray-700"
             >
-              Top Wear
+              TSHIRTS
             </Link>
-            <Link
+            {/* <Link
               to="/collections/all?category=Bottom Wear"
               onClick={toggleNavDrawer}
               className="block text-white-600 hover:text-gray-700"
             >
               Bottom Wear
-            </Link>
+            </Link> */}
           </nav>
         </div>
       </div>

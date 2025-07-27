@@ -26,16 +26,13 @@ const CollectionPage = () => {
   };
 
   const handleClickOutside = (e) => {
-    // close sidebar if clicked outside
     if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
       setIsSidebarOpen(false);
     }
   };
 
   useEffect(() => {
-    //Add EVent listener for CLicks
     document.addEventListener("mousedown", handleClickOutside);
-    //clean event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -43,14 +40,7 @@ const CollectionPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row">
-      {/* Mobile filter button */}
-      <button
-        onClick={toggleSidebar}
-        className="lg:hidden border p-2 flex justify-center items-center"
-      >
-        <FaFilter className="mr-2" />
-      </button>
-      {/* filter sidebar */}
+      {/* Filter Sidebar */}
       <div
         ref={sidebarRef}
         className={`${
@@ -59,13 +49,28 @@ const CollectionPage = () => {
       >
         <FilterSidebar />
       </div>
+
+      {/* Main Content */}
       <div className="flex-grow p-4">
         <h2 className="text-2xl uppercase mb-4">All Collection</h2>
 
-        {/* sort opeitons */}
-        <SortOptions />
+        {/* Filter and Sort Row */}
+        <div className="flex justify-between items-center mb-3">
+          {/* Mobile Filter Button */}
+          <button
+            onClick={toggleSidebar}
+            className="lg:hidden  p-2 flex items-center "
+            style={{ height: "40px" }}
+          >
+            <FaFilter className="mr-2" />
+            <span>Filter</span>
+          </button>
 
-        {/* PRoduct grid */}
+          {/* Sort Options */}
+          <SortOptions />
+        </div>
+
+        {/* Product Grid */}
         <ProductGrid products={products} loading={loading} error={error} />
       </div>
     </div>

@@ -4,6 +4,7 @@ import register from "../assets/register.webp";
 import { registerUser } from "../redux/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { mergeCart } from "../redux/slice/cartSlice";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,43 @@ const Register = () => {
   const location = useLocation();
   const { user, guestId, loading } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
+  const [touched, setTouched] = useState({
+  name: false,
+  email: false,
+  password: false,
+});
+
+const getNameError = () => {
+  if (!touched.name) return "";
+  if (name.trim() === "") return "Name is required";
+  return "";
+};
+
+const getEmailError = () => {
+  if (!touched.email) return "";
+  if (!isEmailValid(email)) return "Invalid email format";
+  return "";
+};
+
+const getPasswordError = () => {
+  if (!touched.password) return "";
+  if (!isPasswordStrong(password)) {
+    return "Password must be at least 6 characters, with one uppercase letter and one number";
+  }
+  return "";
+};
+
+  const isEmailValid = (email) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const isPasswordStrong = (password) =>
+  /^(?=.*[A-Z])(?=.*\d).{6,}$/.test(password);
+
+  const isFormValid =
+  name.trim() !== "" &&
+  isEmailValid(email) &&
+  isPasswordStrong(password);
+
 
   //Get redirect parameter and check if it's checkout ro soemthing
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
@@ -32,9 +70,27 @@ const Register = () => {
   }, [user, guestId, cart, navigate, isCheckoutRedirect, dispatch]);
 
   const handleSumbmit = (e) => {
-    e.preventDefault();
-    dispatch(registerUser({ name, email, password }));
-  };
+  e.preventDefault();
+
+  if (name.trim() === "") {
+    toast.error("Name is required");
+    return;
+  }
+
+  if (!isEmailValid(email)) {
+    toast.error("Please enter a valid email address");
+    return;
+  }
+
+  if (!isPasswordStrong(password)) {
+    toast.error(
+      "Password must be at least 6 characters, with one uppercase letter and one numeric value"
+    );
+    return;
+  }
+
+  dispatch(registerUser({ name, email, password }));
+};
 
   return (
     <div className="flex">
@@ -48,7 +104,7 @@ const Register = () => {
           </div>
           <h2 className="text-2xl font-bold text-center mb-6">Hey there!</h2>
           <p className="text-center mb-6">
-            Enter your username and assword to Login
+            Enter your details to create an account
           </p>
           <div className="mb-4">
             <label className="block text-sm font-semibold mb-2">Name</label>
@@ -56,9 +112,13 @@ const Register = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
               className="w-full p-2 border rounded"
               placeholder="Enter your full name"
             />
+            {getNameError() && (
+              <p className="text-red-500 text-sm mt-1">{getNameError()}</p>
+            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-semibold mb-2">Email</label>
@@ -66,26 +126,43 @@ const Register = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
               className="w-full p-2 border rounded"
               placeholder="Enter your email address"
             />
+            {getEmailError() && (
+              <p className="text-red-500 text-sm mt-1">{getEmailError()}</p>
+            )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-semibold mb-2">Password</label>
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setTouched((prev) => ({ ...prev, password: true }));
+              }}
+              onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
               className="w-full p-2 border rounded"
               placeholder="Enter your Password"
             />
+            {getPasswordError() && (
+              <p className="text-red-500 text-sm mt-1">{getPasswordError()}</p>
+            )}
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white p-2 rounded-lg font-semibold hover:bg-gray-800 transition"
+            disabled={!isFormValid || loading}
+            className={`w-full p-2 rounded-lg font-semibold transition ${
+              isFormValid && !loading
+                ? "bg-black text-white hover:bg-gray-800"
+                : "bg-gray-400 text-white cursor-not-allowed"
+            }`}
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
+
           <p className="mt-6 text-center text-sm">
             Have an account?{" "}
             <Link

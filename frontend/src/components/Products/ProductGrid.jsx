@@ -14,7 +14,7 @@ const ProductGrid = ({ products, loading, error }) => {
         {products.map((product, index) => (
           <Link key={index} to={`/product/${product._id}`} className="bg-[#efefef] ">
             <div
-              className="overflow-hidden w-full"
+              className="aspect-[4/5] overflow-hidden w-full"
               style={{ height: "auto", maxHeight: "480px" }}
             >
               <img

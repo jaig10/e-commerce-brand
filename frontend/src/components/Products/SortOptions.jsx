@@ -12,12 +12,12 @@ const SortOptions = () => {
     }
 
   return (
-    <div className="mb-4 flex items-center justify-end">
+    <div className=" flex items-center justify-end">
       <select
         id="sort"
         onChange={handleSortChange}
         value={searchParams.get("sortBy") || ""}
-        className="border border-gray-200 p-2 rounded-md focus:outline-none"
+        className="border border-gray-200 p-2 h-10 rounded-md focus:outline-none"
       >
         <option value="">Default</option>
         <option value="priceAsc">Price: Low to High</option>
