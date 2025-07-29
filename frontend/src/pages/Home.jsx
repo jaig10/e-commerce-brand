@@ -80,12 +80,37 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="my-8">
-          <img
-            src={bannerImg}
-            alt="Promotional Banner"
-            className="w-full h-auto shadow-md"
-          />
+        {/* Dynamic Promotional Banner Section with Tailwind CSS for responsiveness */}
+        <div className="my-8  w-full relative"> {/* Added relative for potential absolute positioning of children */}
+          {bannerLoading ? (
+            <div className="w-full h-48 sm:h-64 md:h-80 lg:h-88 bg-gray-200 animate-pulse flex items-center justify-center text-gray-500 text-lg">
+              Loading banner...
+            </div>
+          ) : promoBanner ? (
+            <>
+              {/* Mobile Banner: Display on small screens, hide on medium and larger */}
+              <img
+                src={promoBanner.mobile?.url}
+                alt={promoBanner.mobile?.altText || "Mobile Banner"}
+                className="w-full h-auto object-cover shadow-md
+                           max-h-68 aspect-square // You might adjust aspect-ratio for mobile
+                           md:hidden" // Hide this image on medium screens and up
+              />
+
+              {/* Desktop Banner: Hide on small screens, display on medium and larger */}
+              <img
+                src={promoBanner.desktop?.url}
+                alt={promoBanner.desktop?.altText || "Desktop Banner"}
+                className="w-full h-auto object-cover shadow-md
+                           max-h-80 md:max-h-96 lg:max-h-[450px] aspect-video
+                           hidden md:block" // Hide this image on small screens, display on medium and up
+              />
+            </>
+          ) : (
+            <div className="w-full h-48 sm:h-64 md:h-80 lg:h-96 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 text-lg">
+              No banner available.
+            </div>
+          )}
         </div>
 
         {/* best sellers */}
