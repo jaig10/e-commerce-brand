@@ -13,16 +13,13 @@ const ProductGrid = ({ products, loading, error }) => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
         {products.map((product, index) => (
           <Link key={index} to={`/product/${product._id}`} className="bg-[#efefef] ">
-            <div
-              className="aspect-[4/5] overflow-hidden w-full"
-              style={{ height: "auto", maxHeight: "480px" }}
-            >
-              <img
-                src={product.images[0].url}
-                alt={product.images[0].altext || product.name}
-                className="w-full h-full max-h-[250px] md:max-h-[300px] lg:max-h-[350px] object-cover transition-transform duration-500 ease-in-out hover:scale-110"
-              />
-            </div>
+            <div className="aspect-[4/5] overflow-hidden w-full flex items-end">
+  <img
+    src={product.images[0].url}
+    alt={product.images[0].altext || product.name}
+    className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
+  />
+</div>
             <div className="p-2 text-left">
               <p className="text-xs ">{product.name.toUpperCase()}</p>
               <p className="text-xs text-gray-600">Rs. {product.price}</p>

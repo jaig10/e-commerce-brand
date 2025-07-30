@@ -43,7 +43,7 @@ const Navbar = () => {
             to="/collections/all"
             className="text-white-700 hover:text-gray-700 text-sm font-medium uppercase"
           >
-            POLOS
+            TSHIRTS
           </Link>
           <Link
             to="/collections/all"
@@ -55,7 +55,7 @@ const Navbar = () => {
             to="/collections/all?category=Top Wear"
             className="text-white-700 hover:text-gray-700 text-sm font-medium  uppercase"
           >
-            TSHIRTS
+            POLOS
           </Link>
           {/* <Link
             to="/collections/all?category=Bottom Wear"

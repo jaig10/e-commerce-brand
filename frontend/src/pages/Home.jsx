@@ -64,7 +64,7 @@ const Home = () => {
       {/* <GenderCollectionSection /> */}
       {/* <NewArrivals /> */}
       <div className="">
-        <div className="mx-auto pt-10 md:pt-6 ">
+        <div className="mx-auto pt-4 md:pt-2 lg:pt-8">
           <h2 className="mx-4 mb-4 md:mb-6 rubik text-sm ">NEW ARRIVAL</h2>
           <ProductGrid
             products={demoProducts}

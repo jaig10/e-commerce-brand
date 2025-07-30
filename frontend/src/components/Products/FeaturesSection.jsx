@@ -28,7 +28,7 @@ const FeaturesSection = () => {
           <div className="p-4 rounded-full mb-4">
             <RiLoopRightFill className="text-3xl" />
           </div>
-          <h4 className="tracking-tighter mb-2">45 DAYS RETURN</h4>
+          <h4 className="tracking-tighter mb-2">7 DAYS RETURN</h4>
           <p className="text-gray-600 text-sm tracking-tighter">
             MONEY BACK GUARANTEE
           </p>

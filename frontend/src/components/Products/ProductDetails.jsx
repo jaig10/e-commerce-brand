@@ -177,7 +177,7 @@ const ProductDetails = ({ productId }) => {
                 {selectedProduct.description}
               </p>
 
-              {/* Color */}
+              {/* Color
               <div className="mb-4">
                 <p className="text-gray-700">Color:</p>
                 <div className="flex gap-2 mt-2">
@@ -197,7 +197,7 @@ const ProductDetails = ({ productId }) => {
                     />
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Size */}
               <div className="mb-4">
